@@ -6,3 +6,21 @@ In this question we open and read a file call "data.json" with help of "json" mo
 Then converting the content of json file into python using "json.load"
 Later returning the data in "json" format back to the server using "Jsonify"
 
+# ___________________________________________________CODE_______________________________________ # 
+from flask import Flask, jsonify, request
+import json
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Welcome to the Flask MongoDB App!"
+
+@app.route('/api', methods=['GET'])
+def api():
+    with open('data.json') as d:
+        data = json.load(d)
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(debug=True) 
